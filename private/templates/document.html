@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!--
+#   vim: filetype=jinja
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="copyright license" href="http://creativecommons.org/licenses/publicdomain/">
+        <link rel="stylesheet" type="text/css" href="/static/css.css"> 
+
+        <title>{{ title }}</title>
+    </head>
+    <body class="">
+        <h1><a href="./">{{ title }}</a></title></h1>
+        <h2><address class="vcard author"><span class="fn">{{ author }}</span></address></h2>
+        <div class="entry-content">
+            {{ text }}
+        </div>
+        <div class="meta">
+            {{ metadata }}
+            <p class="rights">This work is in <a rel="copyright license" href="http://creativecommons.org/licenses/publicdomain/">the public domain</a>.</p>
+            <p>Go back to the <a href='/'>list of texts</a>.
+        </div>
+    </body>
+</html>
