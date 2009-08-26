@@ -12,7 +12,16 @@
     </head>
     <body class="">
         <h1><a href="./">{{ title }}</a></title></h1>
-        <h2><address class="vcard author"><span class="fn">{{ author }}</span></address></h2>
+        {% if subtitle is not none %}
+        <h2>{{ subtitle }}</h2>
+        {% endif %}
+        <address class="vcard author">
+            <span class="fn">{{ author }}</span>
+            {% if translator is not none %}
+            <span class="translator">Translated from the original {{ language }} by {{ translator }}</span>
+            {% endif %}
+        </address>
+
         <div class="entry-content">
             {{ text }}
         </div>

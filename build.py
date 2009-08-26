@@ -5,7 +5,9 @@ import os, sys, re
 sys.path.insert( 0, os.path.join( os.path.dirname( __file__ ), 'lib' ) )
 sys.path.insert( 0, os.path.join( os.path.dirname( __file__ ), 'lib', 'python-markdown' ) )
 sys.path.insert( 0, os.path.join( os.path.dirname( __file__ ), 'lib', 'jinja' ) )
+sys.path.insert( 0, os.path.join( os.path.dirname( __file__ ), 'lib', 'smartypants' ) )
 from jinja2 import Template
+from smartypants import smartyPants
 from markdown import Markdown, etree
 import yaml
 
@@ -20,13 +22,23 @@ md  =   Markdown()
 
 
 class TextRenderer:
-    def renderDocument( self, directory ):
-        f = open( '%s/metadata.yaml' % directory, 'r' )
-        data = yaml.load( f.read() )
+    def normalizeMetadata( self, data ):
+        defaults =  {
+                        'Title':        None,
+                        'Author':       None,
+                        'Translator':   None,
+                        'Language':     None,
+                        'Published':    None,
+                        'Meta':         None,
+                        'Chapters':     [ { 'Title': None } ]
+                    }
+        defaults.update( data )
+        return defaults
 
-        if not data.has_key( 'Chapters' ):
-            data['Chapters'] = [ { 'Title': data['Title'] } ]
-        
+    def renderDocument( self, directory ):
+        with open( '%s/metadata.yaml' % directory, 'r' ) as f:
+            data = self.normalizeMetadata( yaml.load( f.read() ) )
+
         current_chapter = 0;
         for chapter in data['Chapters']:
             current_chapter += 1
@@ -36,9 +48,12 @@ class TextRenderer:
                 
             html = document_template.render(
                 title=data['Title'],
+                subtitle=chapter['Title'],
                 author=data['Author'],
+                translator=data['Translator'],
+                language=data['Language'],
                 metadata=md.convert(data['Meta']),
-                text=mdp.convert(text)
+                text=smartyPants( text=mdp.convert(text), attr='2' )
             )
 
             print html

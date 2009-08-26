@@ -1,15 +1,17 @@
 # vim: tabstop=2:shiftwidth=2:softtabstop=2:expandtab:filetype=yaml
 
 Title:      'Groundwork of the Metaphysics of Morals'
-Author:     'Immanuel Kant'
-Translator: Thomas Kingsmill Abbott
 Published:  1785
+
+Author:     'Immanuel Kant'
+Language:   German
+Translator: Thomas Kingsmill Abbott
 
 Chapters:
     -   Title:  Preface
-    #-   Title:  Transition from the common rational knowledge of morality to the philosophical
-    #-   Title:  Transition from popular moral philosophy to the metaphysic of morals
-    #-   Title:  Final step from the metaphysic of morals to the critique of the pure practical reason
+    -   Title:  Transition from the common rational knowledge of morality to the philosophical
+    -   Title:  Transition from popular moral philosophy to the metaphysic of morals
+    -   Title:  Final step from the metaphysic of morals to the critique of the pure practical reason
 
 Meta:       |
     Published initially in 1785, this version is based on [the Abbott translation][k]
