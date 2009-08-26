@@ -20,7 +20,7 @@ md  =   Markdown()
 
 
 class TextRenderer:
-    def renderFile( self, directory ):
+    def renderDocument( self, directory ):
         f = open( '%s/metadata.yaml' % directory, 'r' )
         data = yaml.load( f.read() )
 
@@ -45,4 +45,4 @@ class TextRenderer:
 
 
 if __name__ == "__main__":
-    TextRenderer().renderFile( '/Users/mikewest/Repositories/texts_lddebate_org/private/kant/what-is-enlightenment' )
+    TextRenderer().renderDocument( '/Users/mikewest/Repositories/texts_lddebate_org/private/kant/what-is-enlightenment' )
