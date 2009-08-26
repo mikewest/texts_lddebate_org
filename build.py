@@ -33,7 +33,7 @@ class TextRenderer:
             
             with open( '%s/%d.markdown' % ( directory, current_chapter ), 'r' ) as f:
                 text = f.read()
-
+                
             html = document_template.render(
                 title=data['Title'],
                 author=data['Author'],
@@ -45,4 +45,4 @@ class TextRenderer:
 
 
 if __name__ == "__main__":
-    TextRenderer().renderDocument( '/Users/mikewest/Repositories/texts_lddebate_org/private/kant/what-is-enlightenment' )
+    TextRenderer().renderDocument( '/Users/mikewest/Repositories/texts_lddebate_org/private/kant/groundwork-of-the-metaphysics-of-morals' )
