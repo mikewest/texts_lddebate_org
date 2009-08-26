@@ -13,21 +13,36 @@ import yaml
 # Helpful constants!
 TEMPLATE_ROOT       = os.path.join( os.path.dirname( __file__), 'private', 'templates' );
 document_template   = Template( open( os.path.join( TEMPLATE_ROOT, 'document.html' ), 'r' ).read() )
-md  =   Markdown(
+mdp =   Markdown(
             extensions=['footnotes', 'linkedparagraphs'], 
         )
+md  =   Markdown()
 
 
 class TextRenderer:
-    def renderFile( self, filename ):
-        f = open( filename, 'r' )
+    def renderFile( self, directory ):
+        f = open( '%s/metadata.yaml' % directory, 'r' )
         data = yaml.load( f.read() )
-        print document_template.render(
-            title=data['Title'],
-            author=data['Author'],
-            text=md.convert(data['Content'])
-        )
+
+        if not data.has_key( 'Chapters' ):
+            data['Chapters'] = [ { 'Title': data['Title'] } ]
+        
+        current_chapter = 0;
+        for chapter in data['Chapters']:
+            current_chapter += 1
+            
+            with open( '%s/%d.markdown' % ( directory, current_chapter ), 'r' ) as f:
+                text = f.read()
+
+            html = document_template.render(
+                title=data['Title'],
+                author=data['Author'],
+                metadata=md.convert(data['Meta']),
+                text=mdp.convert(text)
+            )
+
+            print html
 
 
 if __name__ == "__main__":
-    TextRenderer().renderFile( '/Users/mikewest/Repositories/texts_lddebate_org/private/kant/what-is-enlightenment/what-is-enlightenment.1.markdown.yaml' )
+    TextRenderer().renderFile( '/Users/mikewest/Repositories/texts_lddebate_org/private/kant/what-is-enlightenment' )
