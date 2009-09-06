@@ -1,6 +1,6 @@
-[submodule "./lib/python-markdown"]
-	path = ./lib/python-markdown
+[submodule "lib/python-markdown"]
+	path = lib/python-markdown
 	url = git://gitorious.org/python-markdown/mainline.git
-[submodule "./lib/jinja"]
-	path = ./lib/jinja
+[submodule "lib/jinja"]
+	path = lib/jinja
 	url = git://github.com/clones/jinja2.git
