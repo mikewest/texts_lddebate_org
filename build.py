@@ -59,7 +59,7 @@ class TextRenderer:
 
     def renderDocument( self, directory ):
         docdir      = os.path.join( PROJECT_ROOT, directory )
-        publicdir   = docdir.replace( '/private/', '/public/' )
+        publicdir   = docdir.replace( '/data/', '/public/' )
         mkdir_p( publicdir )
 
         with open( '%s/metadata.yaml' % docdir, 'r' ) as f:
@@ -95,5 +95,6 @@ class TextRenderer:
             self.renderDocumentIndex( directory=publicdir, data=data )
 
 if __name__ == "__main__":
-    TextRenderer().renderDocument( 'private/kant/what-is-enlightenment' )
-    TextRenderer().renderDocument( 'private/kant/groundwork-of-the-metaphysics-of-morals' )
+    TextRenderer().renderDocument( 'data/aristotle/nicomachean-ethics' )
+    # TextRenderer().renderDocument( 'private/kant/what-is-enlightenment' )
+    # TextRenderer().renderDocument( 'private/kant/groundwork-of-the-metaphysics-of-morals' )
