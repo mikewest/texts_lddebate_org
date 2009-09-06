@@ -20,7 +20,7 @@ html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pr
     width:        45em;
     font-family:  Georgia,Times,Serif;
   }
-  h1, h2, h3, h4 {
+  h1, h2, h3, h4, address {
     font-family:    Baskerville,Georgia,Times,Serif;
     text-align:     center;
     font-size:      300%;
@@ -50,12 +50,23 @@ html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pr
         color:            #00F;
         text-decoration:  underline;
       }
-      /* Tweaking margins to match title widths: */
-      .groundwork h1 {
-        margin: 0 2em 0.5em;
-      }
+
+/* Citation/Translator */
+    address {
+        display:        block;
+        border-bottom:  1px solid #999;
+        font-size:      175%;
+        margin-top:     0.5em;
+        padding-bottom: 1em;
+    }
+        address span {
+            display:    block;
+        }
+        address .translator {
+            font-size:  75%;
+        }
       
-  p, li {
+  p {
     font-size:    123.1%;
     line-height:  1.5;
     margin:       0 0 1em 0;
@@ -78,7 +89,8 @@ html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pr
         font-weight:  bold;
       }
       em {
-        font-variant: small-caps;
+        font-variant:   small-caps;
+        text-transform: lowercase;
       }
         strong em {
           font-variant:   normal;
@@ -92,11 +104,12 @@ html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pr
     }
 
   /*  Footnotes */
-    a.note {
+
+    sup {
       font-size:        0.75em;
       line-height:      1;
       vertical-align:   super;
-      text-decoration:  none;
+      text-decoration:  underline;
       font-weight:      bold;
       padding:          0 3px;
     }
@@ -129,13 +142,21 @@ html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pr
       .enlightenment .meta p {
         text-align: center;
       }
-  /*  Homepage Essay List */
-    #home ul {
-      float:  left;
-      width:  46%;
+  /*  Index page specializations */
+    .index h1 {
+        margin-bottom:  0;
     }
-    #home ul li {
-      list-style:   disc;
-      margin-left:  1em;
-      margin-right: 1em;
+    .index h2 {
+        font-size:      175%;
+    }
+    .index h3 {
+        letter-spacing: 2px;
+        font-size:      200%;
+    }
+    .index ul, .index ol {
+        font-size:  150%;
+    }
+    .index ul li, .index ol li {
+        margin:         0.75em 0.25em 0.75em 0;
+        padding-left:   0;
     }

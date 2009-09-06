@@ -5,22 +5,25 @@
         <link rel="copyright license" href="http://creativecommons.org/licenses/publicdomain/">
         <link rel="stylesheet" type="text/css" href="../../static/philosophic.css"> 
 
-        <title>{{ title }}{% if subtitle is not none %}: {{ subtitle }}{% endif %}</title>
+        <title>{{ title }} &mdash; {{ author }}</title>
     </head>
-    <body class="">
-        <h1><a href="./">{{ title }}</a></title></h1>
+    <body class="index">
+        <h1>{{ title }}</h1>
         <address class="vcard author">
             <span class="fn">Written by {{ author }}</span>
             {% if translator is not none %}
             <span class="translator">Translated from the original {{ language }} by {{ translator }}</span>
             {% endif %}
         </address>
-        {% if subtitle is not none %}
-        <h2>{{ subtitle }}</h2>
-        {% endif %}
+
+        <h2>Table of Contents</h2>
 
         <div class="entry-content">
-            {{ text }}
+            <ol>
+                {% for chapter in chapters %}
+                <li><a href="{{ loop.index }}.html">{{ chapter['Title'] }}</a></li>
+                {% endfor %}
+            </ol>
         </div>
         <div class="meta">
             {{ metadata }}

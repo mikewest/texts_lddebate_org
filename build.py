@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/env python
 # coding: utf-8
 
 import os, sys, re, errno
@@ -13,9 +13,10 @@ import yaml
 
 
 # Helpful constants!
-PROJECT_ROOT        = os.path.dirname( os.path.abspath( __file__ ) )
-TEMPLATE_ROOT       = os.path.join( PROJECT_ROOT, 'private', 'templates' );
-document_template   = Template( open( os.path.join( TEMPLATE_ROOT, 'document.html' ), 'r' ).read() )
+PROJECT_ROOT            = os.path.dirname( os.path.abspath( __file__ ) )
+TEMPLATE_ROOT           = os.path.join( PROJECT_ROOT, 'private', 'templates' );
+document_template       = Template( open( os.path.join( TEMPLATE_ROOT, 'document.html' ), 'r' ).read() )
+document_toc_template   = Template( open( os.path.join( TEMPLATE_ROOT, 'document-toc.html' ), 'r' ).read() )
 mdp =   Markdown(
             extensions=['footnotes', 'linkedparagraphs'], 
         )
@@ -42,6 +43,19 @@ class TextRenderer:
                     }
         defaults.update( data )
         return defaults
+
+    def renderDocumentIndex( self, directory, data ):
+        html = document_toc_template.render(
+            title=data['Title'],
+            author=data['Author'],
+            translator=data['Translator'],
+            language=data['Language'],
+            metadata=md.convert( data['Meta'] ),
+            chapters=data['Chapters']
+        )
+        with open( '%s/index.html' % directory, 'w' ) as f:
+            f.write( html )
+            
 
     def renderDocument( self, directory ):
         docdir      = os.path.join( PROJECT_ROOT, directory )
@@ -72,6 +86,14 @@ class TextRenderer:
             
             with open( '%s/%d.html' % ( publicdir, current_chapter ), 'w' ) as f:
                 f.write( html )
+        
+        # If only one chapter, rename `1.html` to `index.html`, and be done with it.
+        # Otherwise, generate a table of contents for the document.
+        if current_chapter is 1:
+            os.rename( '%s/1.html' % publicdir, '%s/index.html' % publicdir );
+        else:
+            self.renderDocumentIndex( directory=publicdir, data=data )
 
 if __name__ == "__main__":
+    TextRenderer().renderDocument( 'private/kant/what-is-enlightenment' )
     TextRenderer().renderDocument( 'private/kant/groundwork-of-the-metaphysics-of-morals' )
