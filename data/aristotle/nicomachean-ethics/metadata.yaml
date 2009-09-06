@@ -1,0 +1,29 @@
+# vim: tabstop=2:shiftwidth=2:softtabstop=2:expandtab:filetype=yaml
+
+Title:      'Nicomachean Ethics'
+Published:  
+
+Author:     'Aristotle'
+Language:   Greek
+Translator: W. D. Ross
+
+Chapters:
+    -   Title:  The End
+    -   Title:  Moral Virtue
+    -   Title:  Moral Virtue II
+    -   Title:  Moral Virtue III
+    -   Title:  Moral Virtue -- Concluded.  Justice.
+    -   Title:  The Intellectual Virtues
+    -   Title:  Characters other than Virtue and Vice
+    -   Title:  Friendship or Love
+    -   Title:  Friendship or Love II
+    -   Title:  Pleasure and Happiness
+
+Meta:       |
+    Written sometime in the mid-fourth century BC, this version is based on [the Ross translation][r]
+    available on [The Internet Classics Archive][a].  I've taken book names from [F. H. Peter's translation][p],
+    which I find better to read, but whose online text version is simply miserable.
+
+    [r]:    http://classics.mit.edu/Aristotle/nicomachaen.mb.txt
+    [a]:    http://classics.mit.edu/index.html
+    [p]:    http://www.archive.org/details/nicomacheanethi00arisuoft
